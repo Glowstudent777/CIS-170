@@ -1,7 +1,7 @@
-/**
+/*****
 * Author: Glowstudent
 * Program: Calculate Miles-Per-Gallon
-**/
+*****/
 
 import java.util.Scanner;
 
