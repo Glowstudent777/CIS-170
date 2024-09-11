@@ -1,0 +1,17 @@
+// Author: Glowstudent
+// Program: Calculate Miles-Per-Gallon
+
+// Declare needed variables
+Declare Integer milesDriven
+Declare Integer gasUsed
+Declare Real milesPerGallon
+
+Display "Enter number of miles driven (round to nearest mile): "
+Input milesDriven
+
+Display "Enter gallons of gas used (round to the nearest gallon): "
+Input gasUsed
+
+Set milesPerGallon = milesDriven / gasUsed
+
+Display "Your MPG average is ", milesPerGallon
