@@ -1,0 +1,31 @@
+// Author: Glowstudent
+// Program: Factorial Calculator
+
+Declare Integer input
+
+// While loop
+Declare Integer i
+Declare Integer count
+
+// Anything above 16 goes negative because of Euler's number
+Declare Integer max_input
+Set max_input = 16
+
+Display "Enter any number up to 16: "
+Input input
+
+While input > max_input
+    Display "Number is too large. Pick another number: ";
+    Input input
+End While
+
+Set i = 0
+While i < input
+    If (i == 0) Then
+        Set count = ++i;
+    Else
+        Set count *= ++i
+    End If
+End While
+
+Display "The factorial of ", input, " is: ", count
