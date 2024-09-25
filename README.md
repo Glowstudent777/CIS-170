@@ -13,6 +13,13 @@ The code in this repository is written in different programming languages, inclu
 - C++ compiler (e.g., g++)
 - Terminal or Command Prompt
 
+## Text Files
+
+These text files are the Pseudocode for the programs written in Python, Java, and C++. They are the first step in the process of writing the programs. They are written in plain English and are used to plan out the logic of the program before writing the actual code.
+
+
+Obviously, the text files are not executable. They are just a way to plan out the program before writing the actual code.
+
 ## Python
 
 To run the Python code, you will need to have Python installed on your computer. You can download Python from the [official website](https://www.python.org/downloads/).
