@@ -3,6 +3,9 @@
 
 name: str
 
-name = str(input("Enter your name: "))
+def main():
+    name = str(input("Enter your name: "))
+    print("Hello, {0}!".format(name))
 
-print("Hello, {0}!".format(name))
+if __name__ == "__main__":
+    main()

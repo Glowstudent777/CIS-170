@@ -1,5 +1,5 @@
 // Author: Glowstudent
-// Program: Factorial Calculator
+// Program: Template
 
 Declare String name
 
