@@ -1,8 +1,15 @@
 # Author: Glowstudent
 # Program: Kilometer Converter
 
-name: str
+kilometers: float
 
-name = str(input("Enter your name: "))
+def kmToMiles(km: float) -> float:
+    return km * 0.6214
 
-print("Hello, {0}!".format(name))
+def main():
+    kilometers = float(input("Enter the number of kilometers to convert to miles: "))
+    miles = kmToMiles(kilometers)
+    print(f"{kilometers} kilometers is approximately {miles:.4g} miles.")
+
+if __name__ == "__main__":
+    main()
