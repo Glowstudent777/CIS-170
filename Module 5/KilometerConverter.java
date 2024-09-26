@@ -5,15 +5,23 @@
 
 import java.util.Scanner;
 
-public class FactorialCalculator {
+public class KilometerConverter {
+
+    static float convertToMiles(float km) {
+        return km * 0.6214f;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        
+        float km;
+        float miles;
 
-        String input;
+        System.out.print("Enter the number of kilometers to convert to miles: ");
+        km = sc.nextFloat();
 
-        System.out.print("Enter your name: ");
-        input = sc.nextLine();
+        miles = convertToMiles(km);
 
-        System.out.printf("Hello, %s!", input);
+        System.out.printf("%s kilometers is approximately %.4g miles.", km, miles);
     }
 }

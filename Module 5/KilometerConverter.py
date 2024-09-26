@@ -2,6 +2,7 @@
 # Program: Kilometer Converter
 
 kilometers: float
+miles: float
 
 def kmToMiles(km: float) -> float:
     return km * 0.6214
