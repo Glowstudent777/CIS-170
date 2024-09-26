@@ -1,9 +1,19 @@
 // Author: Glowstudent
-// Program: Factorial Calculator
+// Program: Kilometer Converter
 
-Declare String name
 
-Display "Enter your name: "
-Input name
+Module kmToMiles(Real km, Real Ref miles)
+    Set miles = kilometers * 0.6214
+End Module
 
-Display "Hello, ", name, "!"
+Module main()
+    Declare Real kilometers
+    Declare Real miles
+
+    Display "Enter the number of kilometers to convert to miles: "
+    Input kilometers
+
+    Call kmToMiles(kilometers, miles)
+
+    Display kilometers, "km is ", miles, " miles."
+End Module

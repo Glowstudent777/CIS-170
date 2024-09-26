@@ -1,6 +1,6 @@
 /*****
 * Author: Glowstudent
-* Program: Template
+* Program: Kilometer Converter
 *****/
 
 #include <iostream>

@@ -1,5 +1,5 @@
 # Author: Glowstudent
-# Program: Template
+# Program: Kilometer Converter
 
 name: str
 
