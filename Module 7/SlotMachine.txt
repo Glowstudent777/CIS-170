@@ -1,0 +1,105 @@
+// Author: Glowstudent
+// Program: Slot Machine
+
+Declare String again
+Declare Integer moneyTemp
+Declare Integer moneyTotal
+Declare Integer betTemp
+Declare Integer betTotal
+Declare Integer counter
+Declare Integer slot1
+Declare Integer slot2
+Declare Integer slot3
+Declare Boolean isInvalid = True
+
+Function Integer spinSlotMachine()
+    // Spaces since they're going to be printed in a row?
+    // Cherries Plums Melons
+    Select random(1, 6)
+        Case 1
+            Display "Cherries "
+            Return 1
+        Case 2
+            Display "Oranges "
+            Return 2
+        Case 3
+            Display "Plums "
+            Return 3
+        Case 4
+            Display "Bells "
+            Return 4
+        Case 5   
+            Display "Melons "
+            Return 5
+        Case 6
+            Display "Bars "
+            Return 6
+    End While
+End Function
+
+Module CheckSimilarity(Integer a, Integer b, Integer c)
+    If a == b AND b == c Then
+        Set moneyTemp = betTemp * 3
+    Else If a == b OR a == c OR b == c Then
+        Set moneyTemp = betTemp * 2
+    Else
+        Set moneyTemp = 0
+    End If
+End Module
+
+Module playSlots()
+    While isInvalid
+        Display "Enter amount to bet: "
+        Input betTemp
+
+        If isInteger(betTemp) Then
+            If betTemp > 0 Then
+                Set isInvalid = False
+            Else
+                Display "ERROR: Bet must be greater than 0"
+                Set isInvalid = True
+        Else
+            Display "ERROR: Bet must be a whole number"
+            Set isInvalid = True
+        End If
+    End While
+
+    Set isInvalid = True
+
+    Display "Spinning..."
+
+    For counter = 1 to 3
+        Select counter
+            Case 1:
+                Set slot1 = spinSlotMachine()
+            Case 2:
+                Set slot2 = spinSlotMachine()
+            Case 3:
+                Set slot3 = spinSlotMachine()
+        End While
+    End For
+
+    Call CheckSimilarity(slot1, slot2, slot3)
+    Display "You won $", moneyTemp
+    
+    Set moneyTotal += moneyTemp
+    Set betTotal += betTemp
+
+    // Clear values for next run.
+    // Not needed but some weird things can happen sometimes without clearing cause of cache.
+    Set moneyTemp = 0
+    Set betTemp = 0
+End Module
+
+Module main()
+    Display "Welcome to the Slot Machine!"
+
+    do
+        Call playSlots()
+
+        Display "Would you like to play again? (y/n)"
+        Input again
+    While toLower(again) == "y"
+
+    Display "You bet a total of $", betTotal, " and won a total of $", moneyTotal
+End Module
