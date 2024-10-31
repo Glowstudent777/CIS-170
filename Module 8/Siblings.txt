@@ -1,18 +1,27 @@
 // Author: Glowstudent
 // Program: Siblings
 
-Declare Integer siblings
+Declare Integer input
 
 Display "Enter number of siblings: "
-Input siblings
+Input input
 
-If isInteger(siblings) Then
-    If siblings >= 0 Then
-        If siblings == 0 Then
+If isInteger(input) Then
+    If input >= 0 Then
+        If input == 0 Then
             Display "Ah you are an only child."
             Return
         Else
-            // TODO: Loop Stuff using Repetions
+            Declare String siblings[input]
+            For index = 0 To input - 1
+                Display "Enter in sibling number ", index + 1, "name: "
+                Input siblings[index]
+            End For
+
+            Display "Your siblings:"
+            For index = 0 To input - 1
+                Display siblings[index]
+            End For
     Else
         Display "Invalid entry for number of siblings! Program is exiting!"
         Return
@@ -20,5 +29,3 @@ Else
     Display "Invalid entry for number of siblings! Program is exiting!"
     Return
 End If
-
-Return
