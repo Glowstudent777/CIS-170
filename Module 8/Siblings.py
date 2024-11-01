@@ -12,13 +12,15 @@ def main():
     if uInput.isdigit():
         if int(uInput) >= 0:
             if int(uInput) == 0:
-                print("You are an only child.")
+                print("Ah you are an only child.")
                 exit(0)
             else:
                 siblings = [""] * int(uInput)
 
                 for i in range(int(uInput)):
-                    siblings[i] = str(input("Enter in sibling number name: "))
+                    siblings[i] = str(
+                        input(f"Enter in sibling number {(int(i) + 1)} name: ")
+                    )
 
                 print("Your siblings are: ")
                 for i in range(int(uInput)):

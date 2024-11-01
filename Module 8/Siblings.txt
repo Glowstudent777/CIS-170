@@ -19,7 +19,7 @@ If isInteger(input) Then
                 Input siblings[index]
             End For
 
-            Display "Your siblings:"
+            Display "Your siblings are:"
             For index = 0 To input - 1
                 Display siblings[index]
             End For
