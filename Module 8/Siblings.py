@@ -22,7 +22,7 @@ def main():
                         input(f"Enter in sibling number {(int(i) + 1)} name: ")
                     )
 
-                print("Your siblings are: ")
+                print("\nYour siblings are: ")
                 for i in range(int(uInput)):
                     print(siblings[i])
 
