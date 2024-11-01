@@ -5,17 +5,25 @@ input: int
 
 
 def main():
-    global input
+    global uInput
 
-    input = input("Enter number of siblings: ")
+    uInput = input("Enter number of siblings: ")
 
-    if input.isdigit():
-        if int(input) >= 0:
-            if int(input) == 0:
+    if uInput.isdigit():
+        if int(uInput) >= 0:
+            if int(uInput) == 0:
                 print("You are an only child.")
                 exit(0)
             else:
-                print("You have", input, "siblings.")
+                siblings = [""] * int(uInput)
+
+                for i in range(int(uInput)):
+                    siblings[i] = str(input("Enter in sibling number name: "))
+
+                print("Your siblings are: ")
+                for i in range(int(uInput)):
+                    print(siblings[i])
+
                 exit(0)
         else:
             print("Invalid entry for number of siblings! Program is exiting!")
