@@ -2,6 +2,7 @@
 // Program: Siblings
 
 Declare Integer input
+Declare Integer index
 
 Display "Enter number of siblings: "
 Input input
@@ -22,6 +23,8 @@ If isInteger(input) Then
             For index = 0 To input - 1
                 Display siblings[index]
             End For
+
+            Return
     Else
         Display "Invalid entry for number of siblings! Program is exiting!"
         Return
@@ -29,3 +32,5 @@ Else
     Display "Invalid entry for number of siblings! Program is exiting!"
     Return
 End If
+
+Return
