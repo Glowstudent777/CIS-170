@@ -1,6 +1,6 @@
-# CIS-170
+# Programming Logic and Design
 
-This is a repository for my CIS-170 class. It will contain all of the projects and assignments that I complete for this class.
+This is a repository for my `Programming Logic and Design` class. It will contain all of the projects and assignments that I complete for this class.
 
 ## Running the code
 
@@ -16,7 +16,6 @@ The code in this repository is written in different programming languages, inclu
 ## Text Files
 
 These text files are the Pseudocode for the programs written in Python, Java, and C++. They are the first step in the process of writing the programs. They are written in plain English and are used to plan out the logic of the program before writing the actual code.
-
 
 Obviously, the text files are not executable. They are just a way to plan out the program before writing the actual code.
 
