@@ -1,0 +1,42 @@
+// Author: Glowstudent
+// Program: Hacking Toolbox
+
+input: int
+
+Module displayHeader()
+    Display "Header"
+End Module
+
+Module displayMainMenu()
+    Display "Main Menu"
+End Module
+
+Module displayPasswordCrackingMenu()
+    Display "Password Cracking Menu"
+End Module
+
+Module displayCryptographyMenu()
+    Display "Cryptography Menu"
+End Module
+
+Module generatePasswordList()
+    Display "Password List"
+End Module
+
+Module encodeROT13()
+    Display "ROT13"
+End Module
+
+Module decodeROT13()
+    Display "ROT13"
+End Module
+
+Module main()
+    Call displayHeader()
+    Call displayMainMenu()
+    Call displayPasswordCrackingMenu()
+    Call displayCryptographyMenu()
+    Call generatePasswordList()
+    Call encodeROT13()
+    Call decodeROT13()
+End Module
