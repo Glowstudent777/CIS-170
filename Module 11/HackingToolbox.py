@@ -46,7 +46,7 @@ def main():
     displayHeader()
     displayMainMenu()
 
-    while selection < 1 or selection > 2:
+    while (selection < 1 or selection > 2) and selection != 99:
         selection = input("Enter Selection: ")
 
         if selection.isdigit() == False:
