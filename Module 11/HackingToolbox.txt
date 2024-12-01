@@ -1,7 +1,7 @@
 // Author: Glowstudent
 // Program: Hacking Toolbox
 
-input: int
+Declare Integer input
 
 Module displayHeader()
     Display "Header"
