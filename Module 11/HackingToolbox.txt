@@ -4,39 +4,226 @@
 Declare Integer input
 
 Module displayHeader()
-    Display "Header"
+    Display "  _  _         _   _             _____         _ _"
+    Display " | || |__ _ __| |_(_)_ _  __ _  |_   _|__  ___| | |__  _____ __"
+    Display " | __ / _` / _| / / | ' \/ _` |   | |/ _ \/ _ \ | '_ \/ _ \ \ /"
+    Display " |_||_\__,_\__|_\_\_|_||_\__, |   |_|\___/\___/_|_.__/\___/_\_\"
+    Display "                        |___/"
 End Module
 
-Module displayMainMenu()
-    Display "Main Menu"
+Module displayMainMenu(String Ref selection)
+    Display " == Main Menu =="
+    Display " 1.  Password Cracking"
+    Display " 2.  Cryptography"
+    Display " 99. Quit Program"
+    Display "Choose option (1-3 or 99): "
+    Input selection
 End Module
 
-Module displayPasswordCrackingMenu()
-    Display "Password Cracking Menu"
+Module displayPasswordCrackingMenu(String Ref selection)
+    Display " == Password Cracking Menu =="
+    Display " 1.  Generate a wordlist"
+    Display " 99. Return to Main Menu"
+    Display "Choose option (1 or 99): "
+    Input selection
 End Module
 
-Module displayCryptographyMenu()
-    Display "Cryptography Menu"
+Module displayCryptographyMenu(String Ref selection)
+    Display " == Cryptography Menu =="
+    Display " 1.  Decode ROT 13"
+    Display " 2.  Encode ROT 13"
+    Display " 99. Return to Main Menu"
+    Display "Choose option (1-2 or 99): "
+    Input selection
 End Module
 
 Module generatePasswordList()
-    Display "Password List"
+    Declare String fileName
+    Declare String pwdPrefix
+    Declare Integer index
+    Declare String password
+    Declare String prefixNum
+    
+    Display "Enter filename to store passwords to: "
+    Input fileName
+
+    While length(fileName) == 0
+        Display "Filename must not be empty! Enter filename: "
+        Input fileName
+    End While
+
+    Declare OutputFile outFile
+
+    Display "Enter prefix for password: "
+    Input pwdPrefix // Allowed to be empty to just display 0000, 0001, etc
+
+    Open outFile fileName
+
+    For index = 0 To 9999
+        Select length(integerToString(index))
+            Case 1:
+                Set prefixNum = "000" + integerToString(index)
+            Case 2:
+                Set prefixNum = "00" + integerToString(index)
+            Case 3:
+                Set prefixNum = "0" + integerToString(index)
+            Case 4:
+                Set prefixNum = integerToString(index)
+        End Select
+
+        If length(pwdPrefix) > 0 Then
+            Set password = pwdPrefix + prefixNum
+        Else
+            Set password = prefixNum
+        End If
+
+        Write outFile password
+        index = index + 1
+    End For
+
+    Close outFile
+
+    Display "Passwords saved to: " + fileName
 End Module
 
 Module encodeROT13()
-    Display "ROT13"
+    Declare String message
+    Declare Integer index
+    Declare String messageData = ""
+    Declare Character shiftyChar
+
+    Display "Enter message to encode: "
+    Input message
+    While length(message) == 0
+        Display "Message must not be empty! Enter message to encode: "
+        Input message
+    End While
+
+    For index = 0 To length(message) - 1
+        If isUpperCase(message[index]) OR isUpperCase(message[index]) Then
+            If isUpperCase(message[index]) Then
+                Set shiftyChar = (message[index] - 'A' + 13) MOD 26 + 'A'
+            Else If isLowerCase(message[index])
+                Set shiftyChar = (message[index] - 'a' + 13) MOD 26 + 'a'
+            End If
+
+            Set messageData[index] = shiftyChar
+        Else
+            Set messageData[index] = message[index]
+        End If
+
+        index = index + 1
+    End For
+
+    Display "Your encoded message is: " + messageData
 End Module
 
 Module decodeROT13()
-    Display "ROT13"
+    Declare String message
+    Declare Integer index
+    Declare String messageData = ""
+    Declare Character shiftyChar
+
+    Display "Enter message to decode: "
+    Input message
+    While length(message) == 0
+        Display "Message must not be empty! Enter message to decode: "
+        Input message
+    End While
+
+    For index = 0 To length(message) - 1
+        If isUpperCase(message[index]) OR isUpperCase(message[index]) Then
+            If isUpperCase(message[index]) Then
+                Set shiftyChar = (message[index] - 'A' + 13) MOD 26 + 'A'
+            Else If isLowerCase(message[index])
+                Set shiftyChar = (message[index] - 'a' + 13) MOD 26 + 'a'
+            End If
+
+            Set messageData[index] = shiftyChar
+        Else
+            Set messageData[index] = message[index]
+        End If
+
+        index = index + 1
+    End For
+
+    Display "Your decoded message is: " + messageData
 End Module
 
 Module main()
+    Declare String selection
+    Declare Integer selectedOption = 0
+
     Call displayHeader()
-    Call displayMainMenu()
-    Call displayPasswordCrackingMenu()
-    Call displayCryptographyMenu()
-    Call generatePasswordList()
-    Call encodeROT13()
-    Call decodeROT13()
+    Call displayMainMenu(selection)
+
+    While selectedOption < 1 OR selectedOption > 2 AND selectedOption != 99
+        If isInteger(selection) Then
+            Set selectedOption = stringToInteger(selection)
+
+            If selectedOption < 1 OR selectedOption > 2 AND selectedOption != 99 Then
+                Display "Invalid Selection! Choose option (1-3 or 99): "
+                Input selection
+            End If
+        Else
+            Display "Invalid Selection! Choose option (1-3 or 99): "
+            Input selection
+        End If
+    End While
+
+    Select selectedOption
+        Case 1:
+            Set selection = 0
+            Call displayPasswordCrackingMenu(selection)
+
+            While selectedOption != 1 AND selectedOption != 99
+                If isInteger(selection) Then
+                    Set selectedOption = stringToInteger(selection)
+
+                    If selectedOption != 1 AND selectedOption != 99 Then
+                        Display "Invalid Selection! Choose option (1 or 99): "
+                        Input selection
+                    End If
+                Else
+                    Display "Invalid Selection! Choose option (1 or 99): "
+                    Input selection
+                End If
+            End While
+
+            Select selectedOption
+                Case 1:
+                    Call generatePasswordList()
+                Case 99:
+                    Call main()
+            End Select
+        Case 2:
+            Set selection = 0
+            Call displayCryptographyMenu(selection)
+
+            While selectedOption < 1 OR selectedOption > 2 AND selectedOption != 99
+                If isInteger(selection) Then
+                    Set selectedOption = stringToInteger(selection)
+
+                    If selectedOption < 1 OR selectedOption > 2 AND selectedOption != 99 Then
+                        Display "Invalid Selection! Choose option (1-2 or 99): "
+                        Input selection
+                    End If
+                Else
+                    Display "Invalid Selection! Choose option (1-2 or 99): "
+                    Input selection
+                End If
+            End While
+
+            Select selectedOption
+                Case 1:
+                    Call encodeROT13()
+                Case 2:
+                    Call decodeROT13()
+                Case 99:
+                    Call main()
+            End Select
+        Case 99:
+            Display "Goodbye!"
+    End Select
+
 End Module
