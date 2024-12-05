@@ -62,23 +62,22 @@ Module generatePasswordList()
     For index = 0 To 9999
         Select length(integerToString(index))
             Case 1:
-                Set prefixNum = "000" + integerToString(index)
+                Set prefixNum = append("000", index)
             Case 2:
-                Set prefixNum = "00" + integerToString(index)
+                Set prefixNum = append("00", index)
             Case 3:
-                Set prefixNum = "0" + integerToString(index)
+                Set prefixNum = append("0", index)
             Case 4:
-                Set prefixNum = integerToString(index)
+                Set prefixNum = index
         End Select
 
         If length(pwdPrefix) > 0 Then
-            Set password = pwdPrefix + prefixNum
+            Set password = append(pwdPrefix, prefixNum)
         Else
             Set password = prefixNum
         End If
 
         Write outFile password
-        index = index + 1
     End For
 
     Close outFile
@@ -86,11 +85,45 @@ Module generatePasswordList()
     Display "Passwords saved to: " + fileName
 End Module
 
+Function String rot13(String string)
+    Declare String decoded[26] = "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                                 "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+
+    Declare String encoded[26] = "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                                 "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
+
+    Declare String shifted = ""
+    Declare Boolean isUpperCase
+    Declare Boolean found = False
+
+    For i = 0 To length(string) - 1
+            Set found = False
+            For j = 0 To length(decoded) - 1
+                If isUpper(string[i]) Then
+                    Set isUpperCase = True    
+                Else     
+                    Set isUpperCase = False   
+                End If
+                If decoded[j] == toLower(string[i]) Then
+                    Set found = True
+                    If isUpperCase Then
+                        Set shifted = append(shifted, toUpper(encoded[j]))
+                    Else
+                        Set shifted = append(shifted, encoded[j])
+                    End If
+                End If
+            End For
+            If found == False Then
+                Set shifted = apend(shifted, string[i])
+            End If
+    End For
+    Return shifted
+End Function
+
 Module encodeROT13()
     Declare String message
+    Declare String result
     Declare Integer index
-    Declare String messageData = ""
-    Declare Character shiftyChar
 
     Display "Enter message to encode: "
     Input message
@@ -99,30 +132,15 @@ Module encodeROT13()
         Input message
     End While
 
-    For index = 0 To length(message) - 1
-        If isUpperCase(message[index]) OR isUpperCase(message[index]) Then
-            If isUpperCase(message[index]) Then
-                Set shiftyChar = (message[index] - 'A' + 13) MOD 26 + 'A'
-            Else If isLowerCase(message[index])
-                Set shiftyChar = (message[index] - 'a' + 13) MOD 26 + 'a'
-            End If
+    Set result = rot13(message)
 
-            Set messageData[index] = shiftyChar
-        Else
-            Set messageData[index] = message[index]
-        End If
-
-        index = index + 1
-    End For
-
-    Display "Your encoded message is: " + messageData
+    Display "Your encoded message is: " + result
 End Module
 
 Module decodeROT13()
     Declare String message
+    Declare String result
     Declare Integer index
-    Declare String messageData = ""
-    Declare Character shiftyChar
 
     Display "Enter message to decode: "
     Input message
@@ -131,23 +149,9 @@ Module decodeROT13()
         Input message
     End While
 
-    For index = 0 To length(message) - 1
-        If isUpperCase(message[index]) OR isUpperCase(message[index]) Then
-            If isUpperCase(message[index]) Then
-                Set shiftyChar = (message[index] - 'A' + 13) MOD 26 + 'A'
-            Else If isLowerCase(message[index])
-                Set shiftyChar = (message[index] - 'a' + 13) MOD 26 + 'a'
-            End If
+    Set result = rot13(message)
 
-            Set messageData[index] = shiftyChar
-        Else
-            Set messageData[index] = message[index]
-        End If
-
-        index = index + 1
-    End For
-
-    Display "Your decoded message is: " + messageData
+    Display "Your decoded message is: " + result
 End Module
 
 Module main()
