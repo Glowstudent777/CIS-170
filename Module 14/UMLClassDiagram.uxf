@@ -1,0 +1,21 @@
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>330</x><y>176</y><w>539</w><h>143</h></coordinates><panel_attributes>/Enemy/
+--
+- hitpoints : Integer
+- strength : Integer
+--
++ Enemy(inHitpoint : Integer, inStrength : Integer)
++ attack()
++ getHitpoints() : Integer
++ getStrength() : Integer</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>33</x><y>484</y><w>539</w><h>132</h></coordinates><panel_attributes>Dragon
+--
+- color : String
+--
++ Dragon(inHitpoint : Integer, inStrength : Integer, inColor : String)
++ fly()
++ attack()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>616</x><y>484</y><w>539</w><h>132</h></coordinates><panel_attributes>Orc
+--
+- weapon : String
+--
++ Orc(inHitpoint : Integer, inStrength : Integer, inWeapon : String)
++ run()
++ attack()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>583</x><y>308</y><w>319</w><h>198</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;270;100;270;160</additional_attributes></element><element><id>Relation</id><coordinates><x>286</x><y>308</y><w>330</w><h>198</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>280;10;280;100;10;100;10;160</additional_attributes></element></diagram>
